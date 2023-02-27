@@ -1,0 +1,19 @@
+.nav {
+    display: flex;
+
+    &Link {
+        font-family: "Raleway";
+        font-weight: 700;
+        font-size: 1.8rem;
+        text-transform: uppercase;
+        line-height: 2.8rem;
+        color: black;
+        padding: 2rem;
+        margin-right: 2rem;
+        transition: transform 0.2s;
+
+        &:hover {
+      transform: scale(1.1);
+        }
+    }
+}
