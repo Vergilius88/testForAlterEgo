@@ -1,7 +1,12 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import newsPageSlice from "./newsPage/newsPageSlice";
+import profilePageSlice from "./profilePage/profilePageSlice";
 
 export const store = configureStore({
-    reducer: {}
+    reducer: {
+        profilePage: profilePageSlice,
+        newsPage: newsPageSlice
+    }
 });
 
 export type AppDispatch = typeof store.dispatch;
