@@ -16,7 +16,7 @@ const newsPageSlice = createSlice({
     reducers: {},
     extraReducers: builder => {
         builder.addCase(getNews.fulfilled, (state, data) => {
-            state.news = data.payload;
+            state.news =[...state.news, ...data.payload];
         });
         builder.addCase(deleteNews.fulfilled, (state, data) => {
             state.news = state.news.filter((item: News) => item.id !== data.payload);

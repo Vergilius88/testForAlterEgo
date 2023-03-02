@@ -8,8 +8,19 @@ import "./assets/baseStyles/base.css";
 import "./assets/baseStyles/fonts.css";
 import { NewsPage } from "./pages/newsPage/newsPage";
 import { HomePage } from "./pages/homePage/homePage";
+import { useAppDispatch } from "./app/hooks";
+import { useEffect } from "react";
+import { getUserData } from "./app/profilePage/profilePageOperations";
+import { ProfilePage } from "./pages/profilePage/profilePage";
+import { randomNumber } from "./utils/randomNumber";
 
 function App() {
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(getUserData(randomNumber(10)));
+    }, []);
+
     return (
         <>
             <Routes>
@@ -43,7 +54,7 @@ function App() {
                         <RequireAuth>
                             <Header />
                             <Main title="Ваш профіль">
-
+                                <ProfilePage />
                             </Main>
                             <Footer />
                         </RequireAuth>

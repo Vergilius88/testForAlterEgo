@@ -5,12 +5,16 @@ import { deleteNews } from "../../../app/newsPage/newsPageOperations";
 import "./newsListItemStyles.scss";
 
 interface Props {
-    newsItem: News
+    newsItem: News,
 }
 
-export const NewsListItem = ({ newsItem }: Props) => {
+export const NewsListItem = ({ newsItem}: Props) => {
     const { title, body, id } = newsItem;
     const dispatch = useAppDispatch();
+
+    const deleteItem = () => {
+        dispatch(deleteNews(id));
+    };
 
     return (
         <li>
@@ -18,7 +22,7 @@ export const NewsListItem = ({ newsItem }: Props) => {
                 <h2>{title}</h2>
                 <p>{body}</p>
             </article>
-            <Button onClick={() => { dispatch(deleteNews(id)); }} variant="outlined">Delete News</Button>
+            <Button onClick={() => deleteItem()} variant="outlined">Delete News</Button>
         </li>
     );
 };

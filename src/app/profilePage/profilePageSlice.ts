@@ -1,12 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { User } from "../api/api";
-import { getUserData } from "./profilaPageOperations";
+import { getUserData } from "./profilePageOperations";
 interface InitialState {
-    userData: User[];
+    userData: User;
 }
 
 const initialState: InitialState = {
-    userData: []
+    userData: {
+        id: 0,
+        name: ""
+    }
 };
 const profilePageSlice = createSlice({
     name: "profilePageSlice",

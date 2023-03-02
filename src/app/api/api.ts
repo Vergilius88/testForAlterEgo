@@ -3,9 +3,9 @@ import axios from "axios";
 export interface User {
     id: number;
     name: string;
-    username: string;
-    email: string;
-    address: {
+    username?: string;
+    email?: string;
+    address?: {
         street: string;
         suite: string;
         city: string;
@@ -15,9 +15,9 @@ export interface User {
             lng: string;
         };
     };
-    phone: string;
-    website: string;
-    company: {
+    phone?: string;
+    website?: string;
+    company?: {
         name: string;
         catchPhrase: string;
         bs: string;
@@ -38,6 +38,14 @@ export interface Comment {
     body: string;
 }
 
+export interface UserId {
+    userId: number;
+}
+
+export interface PostId {
+    postId: number;
+}
+
 const baseUrl: string = "https://jsonplaceholder.typicode.com";
 
 axios.interceptors.request.use((config): any => ({
@@ -48,10 +56,10 @@ axios.interceptors.request.use((config): any => ({
     }
 }));
 
-export const getRandomUser = (userId: number) => axios.get<User[]>(`/users/${userId}`);
+export const getRandomUser = (request: number) => axios.get<User>(`/users/${request}`);
 
-export const getPosts = () => axios.get<News[]>("/posts");
+export const getPosts = (request: UserId) => axios.get<News[]>("/posts", { params: request });
 
-export const getComments = () => axios.get<Comment[]>("/comments");
+export const getComments = (request: PostId) => axios.get<Comment[]>("/comments", { params: request });
 
 export const deletePost = (PostId: number) => axios.delete(`/posts/${PostId}`);
