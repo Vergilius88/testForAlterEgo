@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Post } from "../api/api";
-import { getNews } from "./newsPageOperations";
+import { News } from "../api/api";
+import { deleteNews, getNews } from "./newsPageOperations";
 
 interface InitialState {
-    news: Post[];
+    news: News[];
 }
 
 const initialState: InitialState = {
@@ -17,6 +17,9 @@ const newsPageSlice = createSlice({
     extraReducers: builder => {
         builder.addCase(getNews.fulfilled, (state, data) => {
             state.news = data.payload;
+        });
+        builder.addCase(deleteNews.fulfilled, (state, data) => {
+            state.news = state.news.filter((item: News) => item.id !== data.payload);
         });
     }
 });

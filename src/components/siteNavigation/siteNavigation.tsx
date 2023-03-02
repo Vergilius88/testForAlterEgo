@@ -14,6 +14,7 @@ export const SiteNavigation = () => {
             <Link className="navLink" to={routes.profilePage}>
                 Профіль користувача
             </Link>
+            
         </nav>
     );
 };

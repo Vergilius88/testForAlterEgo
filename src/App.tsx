@@ -3,20 +3,13 @@ import routes from "./assets/routes";
 import Footer from "./layouts/footer/footer";
 import Header from "./layouts/header/header";
 import Main from "./layouts/main/main";
-import LoginPage from "./pages/authorizationForm/authorizationForm";
 import { RequireAuth } from "./utils/requireAuth";
-import { useAppDispatch } from "./app/hooks";
 import "./assets/baseStyles/base.css";
 import "./assets/baseStyles/fonts.css";
-import { useEffect } from "react";
-import { getNews } from "./app/newsPage/newsPageOperations";
+import { NewsPage } from "./pages/newsPage/newsPage";
+import { HomePage } from "./pages/homePage/homePage";
 
 function App() {
-    const dispatch = useAppDispatch();
-
-    useEffect(() => {
-        dispatch(getNews());
-    }, []);
     return (
         <>
             <Routes>
@@ -25,6 +18,33 @@ function App() {
                     element={
                         <RequireAuth>
                             <Header />
+                            <Main title="Цікаві коментарі на сьогодні">
+                                <HomePage />
+                            </Main>
+                            <Footer />
+                        </RequireAuth>
+                    }
+                />
+                <Route
+                    path={routes.newsPage}
+                    element={
+                        <RequireAuth>
+                            <Header />
+                            <Main title="Останні новини">
+                                <NewsPage />
+                            </Main>
+                            <Footer />
+                        </RequireAuth>
+                    }
+                />
+                <Route
+                    path={routes.profilePage}
+                    element={
+                        <RequireAuth>
+                            <Header />
+                            <Main title="Ваш профіль">
+
+                            </Main>
                             <Footer />
                         </RequireAuth>
                     }
@@ -34,8 +54,8 @@ function App() {
                     element={
                         <>
                             <Header />
-                            <Main title="">
-                                <LoginPage />
+                            <Main title="Авторезуйтеся">
+                                {/* <LoginPage /> */}
                             </Main>
                             <Footer />
                         </>
