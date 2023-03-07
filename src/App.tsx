@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { getUserData } from "./app/profilePage/profilePageOperations";
 import { ProfilePage } from "./pages/profilePage/profilePage";
 import { randomNumber } from "./utils/randomNumber";
+import LoginPage from "./pages/authorizationPage/authorizationForm";
 
 function App() {
     const dispatch = useAppDispatch();
@@ -27,25 +28,25 @@ function App() {
                 <Route
                     path={routes.homePage}
                     element={
-                        <RequireAuth>
+                        <>
                             <Header />
                             <Main title="Цікаві коментарі на сьогодні">
                                 <HomePage />
                             </Main>
                             <Footer />
-                        </RequireAuth>
+                        </>
                     }
                 />
                 <Route
                     path={routes.newsPage}
                     element={
-                        <RequireAuth>
+                        <>
                             <Header />
                             <Main title="Останні новини">
                                 <NewsPage />
                             </Main>
                             <Footer />
-                        </RequireAuth>
+                        </>
                     }
                 />
                 <Route
@@ -66,7 +67,7 @@ function App() {
                         <>
                             <Header />
                             <Main title="Авторезуйтеся">
-                                {/* <LoginPage /> */}
+                                <LoginPage />
                             </Main>
                             <Footer />
                         </>

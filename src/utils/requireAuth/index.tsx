@@ -1,19 +1,18 @@
-import { Navigate, useLocation } from "react-router-dom";
-import { timeInSec } from "../dateTime";
-import { SessionStorage } from "../sessionStorage";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import routes from "../../assets/routes";
+import { session } from "../sessionStorage";
 
-// const tokenLife = () => +SessionStorage.getExpirationTime() < timeInSec();
-const tokenLife = () => false;
 
 const RequireAuth = ({ children }: any) => {
-    const location = useLocation();
-    // const isAdmin = SessionStorage.getRole() === "Admin";
-    // const isEmployee = SessionStorage.getRole() === "Employee";
-    // const authorized = false;
+    const navigate = useNavigate();
+    const authorized = session.checkSession();
 
-    if (tokenLife()) {
-        return <Navigate to="/login" state={{ from: location }} />;
-    } 
+    useEffect(() => {
+        if (!authorized) {
+            navigate(routes.homePage);
+        }
+    }, []);
     return children;
 };
 
